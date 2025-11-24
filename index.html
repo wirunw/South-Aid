@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รวมใจช่วยภาคใต้ - ศูนย์รวมข้อมูลช่วยเหลือผู้ประสบภัยน้ำท่วม 2568</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-life-ring"></i>
+                    <h1>รวมใจช่วยภาคใต้ - ศูนย์รวมข้อมูลช่วยเหลือผู้ประสบภัยน้ำท่วม 2568</h1>
+                </div>
+                <div class="emergency-banner">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span>ฉุกเฉิน: โทร 1669 (หน่วยแพทย์ฉุกเฉิน)</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#monitoring" class="nav-link"><i class="fas fa-chart-line"></i> ติดตามสถานการณ์</a></li>
+                <li><a href="#help" class="nav-link"><i class="fas fa-hands-helping"></i> ขอความช่วยเหลือ</a></li>
+                <li><a href="#shelters" class="nav-link"><i class="fas fa-home"></i> ศูนย์พักพิง</a></li>
+                <li><a href="#donate" class="nav-link"><i class="fas fa-heart"></i> บริจาค</a></li>
+                <li><a href="#contacts" class="nav-link"><i class="fas fa-phone"></i> ติดต่อฉุกเฉิน</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main">
+        <div class="container">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="ค้นหาข้อมูล... (เช่น ชื่อจังหวัด, บริการที่ต้องการ)">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="quick-filters">
+                    <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                    <button class="filter-btn" data-filter="monitoring">ติดตามสถานการณ์</button>
+                    <button class="filter-btn" data-filter="help">ขอความช่วยเหลือ</button>
+                    <button class="filter-btn" data-filter="shelter">ศูนย์พักพิง</button>
+                    <button class="filter-btn" data-filter="donate">บริจาค</button>
+                </div>
+            </section>
+
+            <!-- Monitoring Section -->
+            <section id="monitoring" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-line"></i> แหล่งข้อมูลติดตามสถานการณ์น้ำท่วม</h2>
+                    <p>แอปพลิเคชันและเว็บไซต์สำหรับติดตามสถานการณ์น้ำท่วมแบบเรียลไทม์</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-water"></i>
+                            <h3>ThaiWater</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ติดตามปริมาณฝนตก และระดับน้ำในลุ่มน้ำต่างๆ พร้อมแบบจำลองคาดการณ์สภาพอากาศ</p>
+                            <div class="links">
+                                <a href="https://www.thaiwater.net/mobile" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-mobile-alt"></i> ดาวน์โหลดแอป
+                                </a>
+                                <a href="https://www.thaiwater.net/" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-globe"></i> เว็บไซต์
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-satellite"></i>
+                            <h3>เช็คน้ำ (Check Water)</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ใช้ข้อมูลดาวเทียมวิเคราะห์พื้นที่เสี่ยงน้ำท่วม ติดตามสถานการณ์แบบท้องถิ่น</p>
+                            <div class="links">
+                                <a href="https://play.google.com/store/apps/details?id=com.gistda.gflood_warning_beta&hl=th&pli=1" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-android"></i> Android
+                                </a>
+                                <a href="https://apps.apple.com/th/app/%E0%B9%80%E0%B8%8A-%E0%B8%84%E0%B8%99-%E0%B8%B3/id6443870348" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-apple"></i> iOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>THAI DISASTER ALERT</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ระบบแจ้งเตือนภัยพิบัติล่วงหน้า โดยตรงจาก ปภ. สามารถใช้แจ้งเหตุและขอความช่วยเหลือได้</p>
+                            <div class="links">
+                                <a href="https://play.google.com/store/apps/details?id=com.THAIDAlert.DPM&hl=th" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-android"></i> Android
+                                </a>
+                                <a href="https://apps.apple.com/th/app/thai-disaster-alert/id1593150344" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-apple"></i> iOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-mountain"></i>
+                            <h3>DWR4THAI</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>เตือนภัยน้ำหลาก ดินถล่ม ดูสถานการณ์น้ำในแม่น้ำ อ่างเก็บน้ำ และแผนที่แนวโน้มน้ำ</p>
+                            <div class="links">
+                                <a href="https://play.google.com/store/apps/details?id=com.dwr4thai.android&hl=th" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-android"></i> Android
+                                </a>
+                                <a href="https://apps.apple.com/th/app/dwr4thai/id1454474803" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-apple"></i> iOS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-tint"></i>
+                            <h3>WMSC</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>บริหารจัดการน้ำในลุ่มน้ำ แจ้งข่าวสารน้ำ พัฒนาโดย สทนช. (สำนักงานทรัพยากรน้ำแห่งชาติ)</p>
+                            <div class="links">
+                                <a href="https://wmsc.rid.go.th/index.php/getting-started" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-globe"></i> เว็บไซต์
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-eye"></i>
+                            <h3>สงขลา 24 เฝ้าระวังภัยสงขลา</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ข้อมูลติดต่อ เฝ้าระวังภัยสงขลา 24 ชั่วโมง</p>
+                            <div class="links">
+                                <a href="https://songkhla24.appthai.com/" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-globe"></i> เว็บไซต์
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="monitoring">
+                        <div class="card-header">
+                            <i class="fas fa-database"></i>
+                            <h3>ศูนย์ข้อมูลน้ำระดับจังหวัด</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ให้ข้อมูลเชิงลึก เช่น ปริมาณน้ำ, ระดับน้ำ, เขื่อน, ความชื้น, พื้นที่เฝ้าระวัง</p>
+                            <div class="links">
+                                <a href="https://songkhla.thaiwater.net/wl?utm_source=chatgpt.com" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-globe"></i> เว็บไซต์
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Help Section -->
+            <section id="help" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-hands-helping"></i> แหล่งขอความช่วยเหลือ</h2>
+                    <p>แจ้งขอความช่วยเหลือเมื่อประสบภัยน้ำท่วม</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card" data-category="help">
+                        <div class="card-header">
+                            <i class="fas fa-comments"></i>
+                            <h3>Traffy Fondue</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>แพลตฟอร์มบริหารจัดการปัญหาเมือง แจ้งปัญหาและขอความช่วยเหลือผ่าน Line</p>
+                            <div class="links">
+                                <a href="https://line.me/R/ti/p/%40105rlyvn" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-line"></i> Line Traffy fondue
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="help">
+                        <div class="card-header">
+                            <i class="fas fa-file-alt"></i>
+                            <h3>กรอกข้อมูลผู้ประสบอุทกภัย (หาดใหญ่)</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>แบบฟอร์มสำหรับผู้ประสบอุทกภัยในพื้นที่อำเภอหาดใหญ่</p>
+                            <div class="links">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc8LILHztELOQCkb1axaLkU2GN0j9N6qHvIDUp_c0AQWXLIvg/viewform" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-edit"></i> กรอกแบบฟอร์ม
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="help">
+                        <div class="card-header">
+                            <i class="fas fa-laptop-code"></i>
+                            <h3>hatyaitongrod</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>แพลตฟอร์มช่วยเหลือผู้ประสบอุทกภัยโดยคณะวิทยาการคอมพิวเตอร์ จุฬาลงกรณ์มหาวิทยาลัย</p>
+                            <div class="links">
+                                <a href="https://kaitodhatyaii.vercel.app/" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-globe"></i> เว็บไซต์
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card" data-category="help">
+                        <div class="card-header">
+                            <i class="fab fa-facebook"></i>
+                            <h3>HATYAIZ</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>แจ้งสถานการณ์และขอความช่วยเหลือผ่าน Facebook</p>
+                            <div class="links">
+                                <a href="https://www.facebook.com/share/g/1Dj47qmg1M/?mibextid=wwXIfr" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-facebook"></i> Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shelters Section -->
+            <section id="shelters" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-home"></i> ศูนย์พักพิง</h2>
+                    <p>สถานที่พักพิงชั่วคราวสำหรับผู้ประสบภัย</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card" data-category="shelter">
+                        <div class="card-header">
+                            <i class="fas fa-university"></i>
+                            <h3>มหาวิทยาลัยสงขลานครินทร์</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ศูนย์พักพิงสำหรับผู้ประสบภัย</p>
+                            <div class="links">
+                                <a href="https://www.facebook.com/share/p/16oH2W5VDZ/?mibextid=wwXIfr" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-facebook"></i> ข้อมูลเพิ่มเติม
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="shelter">
+                        <div class="card-header">
+                            <i class="fas fa-school"></i>
+                            <h3>มหาวิทยาลัยราชภัฏสงขลา</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ศูนย์พักพิง อ.เมืองสงขลา</p>
+                            <div class="links">
+                                <a href="https://www.facebook.com/share/p/1DNgW21TVi/?mibextid=wwXIfr" target="_blank" class="btn btn-primary">
+                                    <i class="fab fa-facebook"></i> ข้อมูลเพิ่มเติม
+                                </a>
+                            </div>
+                            <div class="contact-info">
+                                <p><i class="fas fa-phone"></i> สนง.พัฒนาสังคมและความมั่นคงของมนุษย์จังหวัดสงขลา</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:081-9904294" class="phone-btn">081-9904294</a>
+                                </div>
+                                <p><strong>รวมศูนย์พักพิง:</strong></p>
+                                <ul>
+                                    <li>มหาวิทยาลัยราชภัฏสงขลา อ.เมืองสงขลา</li>
+                                    <li>สนง.ส่งเสริมและสนับสนุนวิชาการ 11 สงขลา</li>
+                                    <li>รร.บริหารธุรกิจวิทยาสงขลา อ.เมืองสงขลา</li>
+                                    <li>มหาวิทยาลัยทักษิณ วิทยาเขตสงขลา</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card emergency-card" data-category="shelter">
+                        <div class="card-header">
+                            <i class="fas fa-truck"></i>
+                            <h3>อบจ.สตูล บริการช่วยเหลือฉุกเฉิน</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>จัดเตรียมรถบรรทุกหกล้อพร้อมเจ้าหน้าที่ เพื่อขนย้ายผู้ประสบอุทกภัย</strong></p>
+                            <div class="contact-info">
+                                <p><i class="fas fa-phone"></i> ศูนย์ช่วยเหลือฉุกเฉิน 24 ชม.</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:084-0431723" class="phone-btn">084-0431723</a>
+                                    <a href="tel:081-2752962" class="phone-btn">081-2752962</a>
+                                    <a href="tel:081-0979169" class="phone-btn">081-0979169</a>
+                                    <a href="tel:093-8769725" class="phone-btn">093-8769725</a>
+                                </div>
+                                <p><i class="fas fa-user"></i> นายกสัมฤทธิ์ เลียงประสิทธิ์:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:081-8962122" class="phone-btn">081-8962122</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="shelter">
+                        <div class="card-header">
+                            <i class="fas fa-home"></i>
+                            <h3>ศูนย์ช่วยเหลือและอพยพผู้ประสบภัย อบจ.สตูล</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>4 แห่ง:</strong></p>
+                            <ol>
+                                <li>สำนักงาน อบต.ละงู อำเภอละงู</li>
+                                <li>โรงเรียนบ้านนาแก้ว อำเภอท่าแพ</li>
+                                <li>โรงเรียนควนโดนวิทยา อำเภอควนโดน</li>
+                                <li>Satun Geopark Gateway อ.ควนโดน</li>
+                            </ol>
+                            <p class="note">เป็นศูนย์พักพิงชั่วคราว และศูนย์ประสานงานช่วยเหลือติดต่อ โรงครัวเฉพาะกิจ</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Donate Section -->
+            <section id="donate" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-heart"></i> บริจาคและอาสาสมัคร</h2>
+                    <p>ช่วยเหลือผู้ประสบภัยด้วยการบริจาคสิ่งของหรือเงิน</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card" data-category="donate">
+                        <div class="card-header">
+                            <i class="fas fa-university"></i>
+                            <h3>มหาวิทยาลัยสงขลานครินทร์ - รับบริจาค</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>ที่ต้องการ:</strong></p>
+                            <ul>
+                                <li>วัตถุดิบประกอบอาหาร ของสดทุกชนิด (โดยเฉพาะ ไข่ไก่ เครื่องปรุง ฮาลาล)</li>
+                                <li>อาหารแห้งสำหรับจัดทำถุงยังชีพ (ข้าวสาร มาม่า อาหารกระป๋อง นม ไข่ ขนม น้ำดื่ม ยาสามัญ)</li>
+                            </ul>
+                            <div class="donation-info">
+                                <p><strong>บริจาคเงิน:</strong></p>
+                                <p>ธนาคารไทยพาณิชย์</p>
+                                <p>ชื่อบัญชี: สงขลานครินทร์เพื่อผู้ประสบภัย</p>
+                                <p>เลขที่บัญชี: 565-471106-1</p>
+                            </div>
+                            <div class="contact-info">
+                                <p><i class="fas fa-clock"></i> รับบริจาคทุกวัน 09.00–16.00 น.</p>
+                                <p><i class="fas fa-map-marker-alt"></i> อาคารมรรคทิพย์(ตรงข้ามศูนย์อาหารโรงช้าง) ม.อ. หาดใหญ่</p>
+                                <p><i class="fas fa-phone"></i> คุณเยาวลักษณ์:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:087-287-8713" class="phone-btn">087-287-8713</a>
+                                </div>
+                                <p><i class="fab fa-facebook"></i> กองพัฒนานักศึกษา ม.อ.หาดใหญ่</p>
+                                <p><i class="fab fa-line"></i> LINE: @psubuddy</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="donate">
+                        <div class="card-header">
+                            <i class="fas fa-bed"></i>
+                            <h3>มหาวิทยาลัยสงขลานครินทร์ - ศูนย์พักพิง</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>ที่ต้องการ:</strong></p>
+                            <ul>
+                                <li>ผ้าเช็ดตัว</li>
+                                <li>ผ้าห่ม</li>
+                                <li>เสื่อปูนอน</li>
+                                <li>เสื้อผ้าสำหรับผู้ประสบภัย</li>
+                            </ul>
+                            <div class="contact-info">
+                                <p><i class="fas fa-map-marker-alt"></i> ศูนย์กีฬาและสุขภาพมหาวิทยาลัยสงขลานครินทร์</p>
+                                <a href="https://maps.app.goo.gl/YBFdjUdkaPwbe7jb6" target="_blank" class="btn btn-secondary">
+                                    <i class="fas fa-map"></i> ดูแผนที่
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card emergency-card" data-category="donate">
+                        <div class="card-header">
+                            <i class="fas fa-hospital"></i>
+                            <h3>เทศบาลเมืองบ้านพรุ - รับบริจาคด่วน</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>จำเป็นด่วน:</strong></p>
+                            <ul>
+                                <li>ยาและเวชภัณฑ์ (เนื่องจากถูกตัดขาดและยาเริ่มขาดแคลน)</li>
+                                <li>อาหารกล่อง</li>
+                            </ul>
+                            <div class="contact-info">
+                                <p><i class="fas fa-user"></i> ผู้ประสานงาน:</p>
+                                <p>คุณศศิธร:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:090-219-0555" class="phone-btn">090-219-0555</a>
+                                </div>
+                                <p>คุณโสมสิริ:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:061-209-5651" class="phone-btn">061-209-5651</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card emergency-card" data-category="donate">
+                        <div class="card-header">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>ต้องการด่วน! - ยาและเวชภัณฑ์</h3>
+                        </div>
+                        <div class="card-content">
+                            <p><strong>รายการที่ต้องการด่วน:</strong></p>
+                            <ul>
+                                <li>ผงน้ำตาลเกลือแร่ ORS</li>
+                                <li>โพวิโดน ไอโอดีน ขวดเล็ก</li>
+                                <li>ยาแก้แพ้ CPM แบบแผง</li>
+                                <li>ยาพารา แบบแผง</li>
+                                <li>ยาครีมโคลไตรมาโซล</li>
+                                <li>ยาครีมไตรแอมซิโนโลน</li>
+                                <li>ชุดทำแผลสำเร็จรูป</li>
+                            </ul>
+                            <div class="contact-info">
+                                <p><strong>ส่งที่:</strong></p>
+                                <p><i class="fas fa-user"></i> คุณนุชน้อย ประภาโส</p>
+                                <p><i class="fas fa-map-marker-alt"></i> 161/1 ถ.รามวิถี ต.บ่อยาง อ.เมือง จ.สงขลา 90000</p>
+                                <p><i class="fas fa-phone"></i> โทร:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:064-262-1919" class="phone-btn">064-262-1919</a>
+                                </div>
+                                <hr>
+                                <p><strong>หรือส่งที่:</strong></p>
+                                <p><i class="fas fa-hospital"></i> สำนักงานสาธารณสุขจังหวัดสงขลา</p>
+                                <p><i class="fas fa-map-marker-alt"></i> 161/1 ถนน รามวิถี ต.บ่อยาง อ.เมืองสงขลา จ.สงขลา 90000</p>
+                                <hr>
+                                <p><strong>หรือส่งที่:</strong></p>
+                                <p><i class="fas fa-hospital"></i> โรงพยาบาลสงขลา</p>
+                                <p><i class="fas fa-map-marker-alt"></i> รับบริจาคในนามสถานบริการสาธารณสุข เขตบริการสุขภาพที่ 12</p>
+                                <p>666 หมู่ 2 ถนนสงขลา–ระโนด ต.พะวง อ.เมือง จ.สงขลา 90100</p>
+                                <p><i class="fas fa-phone"></i> กญ.อัญยาพัสณ์:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:081-540-2579" class="phone-btn">081-540-2579</a>
+                                </div>
+                                <p><i class="fas fa-phone"></i> ภญ.ปฏิมา:</p>
+                                <div class="phone-buttons">
+                                    <a href="tel:095-036-3550" class="phone-btn">095-036-3550</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" data-category="donate">
+                        <div class="card-header">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <h3>แหล่งขอความช่วยเหลือใน Google Map</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>ดูแผนที่แสดงจุดที่ต้องการความช่วยเหลือทั้งหมด</p>
+                            <div class="links">
+                                <a href="https://www.google.com/maps/d/u/0/viewer?mid=1haOVdb85dI_TR2piCBLepSMXoOg5JIY&hl=en&fbclid=IwY2xjawORRlxleHRuA2FlbQIxMABicmlkETFGZFcwWFBWQ245NjZMU3Rlc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjMDjvCl8rYumjr5IDLiCU4JHOFp0WTSYLRrSH5KquAoAjVMF9uTvDZwugtw_aem_nBEUgx6eb9fIuhzubCSKOg&ll=7.013990137018535%2C100.47199450500699&z=13" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-map"></i> ดูแผนที่
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency Contacts Section -->
+            <section id="contacts" class="section">
+                <div class="section-header">
+                    <h2><i class="fas fa-phone-alt"></i> ติดต่อฉุกเฉิน</h2>
+                    <p>หมายเลขโทรศัพท์ฉุกเฉินที่สำคัญ</p>
+                </div>
+                
+                <div class="emergency-contacts">
+                    <div class="contact-card emergency">
+                        <div class="contact-icon">
+                            <i class="fas fa-ambulance"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>หน่วยแพทย์ฉุกเฉิน</h3>
+                            <p class="phone-number">1669</p>
+                            <p>บริการทางการแพทย์ฉุกเฉิน 24 ชั่วโมง</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card emergency">
+                        <div class="contact-icon">
+                            <i class="fas fa-fire-extinguisher"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>ดับเพลิงและสัตว์</h3>
+                            <p class="phone-number">199</p>
+                            <p>ดับเพลิง ช่วยชีวิต และสัตว์</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card emergency">
+                        <div class="contact-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>ตำรวจ</h3>
+                            <p class="phone-number">191</p>
+                            <p>ตำรวจ ความปลอดภัยและความสงบเรียบร้อย</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>อบจ.สตูล ฉุกเฉิน</h3>
+                            <p class="phone-number">084-0431723</p>
+                            <p>รถบรรทุกช่วยเหลือผู้ประสบภัย 24 ชม.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <div class="contact-info">
+                            <h3>เทศบาลเมืองบ้านพรุ</h3>
+                            <p class="phone-number">090-219-0555</p>
+                            <p>คุณศศิธร - รับบริจาคยาและอาหาร</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>เกี่ยวกับภาคใต้ช่วยเหลือ</h3>
+                    <p>รวบรวมข้อมูลช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025 เพื่อให้การช่วยเหลือเป็นไปอย่างรวดเร็วและมีประสิทธิภาพ</p>
+                </div>
+                <div class="footer-section">
+                    <h3>ติดต่อเรา</h3>
+                    <p>หากอยากให้ช่วย update ข้อมูลเพิ่มเติม สามารถติดต่อได้ที่ <a href="https://www.facebook.com/asryhero/" target="_blank">https://www.facebook.com/asryhero/</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>ข้อมูลล่าสุด</h3>
+                    <p>อัพเดทข้อมูลล่าสุด: 24 พฤศจิกายน 2025</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-credit">
+                    <p>รวมรวมโดย เภสัชกรวิรุณ เวชศิริ และทีมงาน AI Club สำหรับเภสัชกร</p>
+                    <div class="footer-logo">
+                        <a href='https://postimg.cc/dDfBQVWf' target='_blank'>
+                            <img src='https://i.postimg.cc/yY1rPJ07/wirun-facbook.png' alt='Wirun Facebook' style='height: 40px; border-radius: 5px;'>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

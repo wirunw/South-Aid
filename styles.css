@@ -1,0 +1,796 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f7fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo i {
+    font-size: 2rem;
+    color: #ffd700;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.emergency-banner {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+.emergency-banner i {
+    color: #ffd700;
+    font-size: 1.2rem;
+}
+
+/* Navigation Styles */
+.nav {
+    background: #2c3e50;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 80px;
+    z-index: 999;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.nav-menu li {
+    margin: 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background: #34495e;
+    border-bottom-color: #3498db;
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+}
+
+/* Main Content */
+.main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 200px);
+}
+
+/* Search Section */
+.search-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+.search-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+#searchBtn {
+    padding: 1rem 1.5rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#searchBtn:hover {
+    background: #2980b9;
+}
+
+.quick-filters {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.filter-btn:hover {
+    border-color: #3498db;
+    background: #f8f9fa;
+}
+
+.filter-btn.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Section-specific colors */
+#monitoring .section-header h2 {
+    color: #3498db;
+}
+
+#help .section-header h2 {
+    color: #e74c3c;
+}
+
+#shelters .section-header h2 {
+    color: #27ae60;
+}
+
+#donate .section-header h2 {
+    color: #f39c12;
+}
+
+#contacts .section-header h2 {
+    color: #8e44ad;
+}
+
+/* Section-specific card headers */
+#monitoring .card-header {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+#help .card-header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+#shelters .card-header {
+    background: linear-gradient(135deg, #27ae60, #229954);
+}
+
+#donate .card-header {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+#contacts .contact-icon {
+    background: linear-gradient(135deg, #8e44ad, #7d3c98);
+}
+
+/* Section-specific backgrounds */
+#monitoring {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.05), rgba(41, 128, 185, 0.02));
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+#help {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.05), rgba(192, 57, 43, 0.02));
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+#shelters {
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.05), rgba(34, 153, 84, 0.02));
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+#donate {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05), rgba(230, 126, 34, 0.02));
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+#contacts {
+    background: linear-gradient(135deg, rgba(142, 68, 173, 0.05), rgba(125, 60, 152, 0.02));
+    padding: 2rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.section-header p {
+    color: #7f8c8d;
+    font-size: 1.1rem;
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-header i {
+    font-size: 1.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.card-content ul {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.card-content li {
+    margin-bottom: 0.5rem;
+}
+
+.card-content ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.card-content ol li {
+    margin-bottom: 0.5rem;
+}
+
+.note {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-left: 4px solid #3498db;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* Emergency Card */
+.emergency-card {
+    border: 2px solid #e74c3c;
+}
+
+.emergency-card .card-header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* Links and Buttons */
+.links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Kanit', sans-serif;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Contact Info */
+.contact-info {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.contact-info i {
+    color: #3498db;
+    margin-top: 0.2rem;
+    min-width: 20px;
+}
+
+/* Donation Info */
+.donation-info {
+    background: #e8f5e8;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    border-left: 4px solid #27ae60;
+}
+
+.donation-info p {
+    margin-bottom: 0.5rem;
+}
+
+/* Emergency Contacts */
+.emergency-contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.contact-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.contact-card.emergency {
+    border: 2px solid #e74c3c;
+    background: linear-gradient(135deg, #fff5f5, #ffffff);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    flex-shrink: 0;
+}
+
+.contact-card.emergency .contact-icon {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.contact-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.phone-number {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e74c3c;
+    margin-bottom: 0.25rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #e74c3c;
+    border-radius: 25px;
+    background: rgba(231, 76, 60, 0.05);
+    text-decoration: none;
+}
+
+.phone-number:hover {
+    background: #e74c3c;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.phone-number:active {
+    transform: translateY(0);
+}
+
+.phone-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.phone-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #e74c3c;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 2px solid #e74c3c;
+}
+
+.phone-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.phone-btn:active {
+    transform: translateY(0);
+}
+
+.phone-btn::before {
+    content: "📞";
+    font-size: 0.8rem;
+}
+
+.contact-info p {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin: 0;
+}
+
+/* Footer */
+.footer {
+    background: #2c3e50;
+    color: white;
+    padding: 2rem 0 1rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.footer-section p {
+    line-height: 1.6;
+    color: #bdc3c7;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+}
+
+.footer-credit {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-credit p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.footer-logo {
+    margin-top: 10px;
+}
+
+.footer-logo img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.footer-logo img:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo h1 {
+        font-size: 1.2rem;
+    }
+    
+    .emergency-banner {
+        font-size: 0.9rem;
+    }
+    
+    .nav {
+        position: static;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .nav-link {
+        width: 100%;
+        justify-content: center;
+        border-bottom: 1px solid #34495e;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .emergency-contacts {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .section-header h2 {
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .links {
+        flex-direction: column;
+    }
+    
+    .btn {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo i {
+        font-size: 1.5rem;
+    }
+    
+    .logo h1 {
+        font-size: 1rem;
+    }
+    
+    .emergency-banner {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.3rem;
+    }
+    
+    .card-header {
+        padding: 1rem;
+    }
+    
+    .card-header h3 {
+        font-size: 1rem;
+    }
+    
+    .card-content {
+        padding: 1rem;
+    }
+    
+    .contact-card {
+        padding: 1rem;
+    }
+    
+    .contact-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .phone-number {
+        font-size: 1.1rem;
+    }
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2980b9;
+}
+
+/* Print Styles */
+@media print {
+    .header, .nav, .search-section, .footer {
+        display: none;
+    }
+    
+    .main {
+        padding: 0;
+    }
+    
+    .card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
