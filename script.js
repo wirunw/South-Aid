@@ -449,6 +449,69 @@ document.querySelectorAll('a[target="_blank"]').forEach(link => {
     });
 });
 
+// Mobile menu functionality
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.getElementById('navMenu');
+const navOverlay = document.getElementById('navOverlay');
+
+if (mobileMenuBtn && navMenu && navOverlay) {
+    mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navOverlay.classList.toggle('active');
+        mobileMenuBtn.classList.toggle('active');
+        
+        // Change icon
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    navOverlay.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navOverlay.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+        
+        // Reset icon
+        const icon = mobileMenuBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    });
+
+    // Close menu when clicking on nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            navOverlay.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            
+            // Reset icon
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            navOverlay.classList.remove('active');
+            mobileMenuBtn.classList.remove('active');
+            
+            // Reset icon
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+}
+
 // Console welcome message
 console.log('%cศูนย์ช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025', 'color: #3498db; font-size: 20px; font-weight: bold;');
 console.log('%cสร้างขึ้นเพื่อการช่วยเหลือมนุษย์ 🙏', 'color: #27ae60; font-size: 14px;');
