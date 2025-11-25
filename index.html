@@ -1460,12 +1460,17 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        // --- MOBILE HEADER TOGGLE FUNCTION ---
+        // --- AUTO HIDE HEADER ON SCROLL ---
+        let lastScrollTop = 0;
+        let scrollThreshold = 100;
+        let isHeaderHidden = false;
+
         function toggleHeader() {
             const header = document.querySelector('.header');
             const toggleBtn = document.querySelector('.header-toggle i');
             
             header.classList.toggle('collapsed');
+            isHeaderHidden = !isHeaderHidden;
             
             if (header.classList.contains('collapsed')) {
                 toggleBtn.classList.remove('fa-bars');
@@ -1475,6 +1480,36 @@
                 toggleBtn.classList.add('fa-bars');
             }
         }
+
+        // Auto hide/show header based on scroll direction
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            const toggleBtn = document.querySelector('.header-toggle');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Only apply auto-hide on mobile devices
+            if (window.innerWidth <= 768) {
+                if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
+                    // Scrolling down - hide header
+                    if (!isHeaderHidden) {
+                        header.classList.add('collapsed');
+                        toggleBtn.querySelector('i').classList.remove('fa-bars');
+                        toggleBtn.querySelector('i').classList.add('fa-times');
+                        isHeaderHidden = true;
+                    }
+                } else if (scrollTop < lastScrollTop - 50) {
+                    // Scrolling up - show header
+                    if (isHeaderHidden && scrollTop > 0) {
+                        header.classList.remove('collapsed');
+                        toggleBtn.querySelector('i').classList.remove('fa-times');
+                        toggleBtn.querySelector('i').classList.add('fa-bars');
+                        isHeaderHidden = false;
+                    }
+                }
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
 
