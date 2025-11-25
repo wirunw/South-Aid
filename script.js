@@ -1,292 +1,168 @@
-// DOM Elements
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.card');
-const navLinks = document.querySelectorAll('.nav-link');
-
 // Initialize the application
 document.addEventListener('DOMContentLoaded', function() {
-    initializeSearch();
-    initializeFilters();
-    initializeNavigation();
     initializeSmoothScroll();
-    initializeAnimations();
+    initializeMap();
+    initializeAccordion();
+    initializeDonationCards();
+    initializeFilters();
     initializeEmergencyFeatures();
+    initializeAnimations();
 });
 
-// Search functionality
-function initializeSearch() {
-    searchBtn.addEventListener('click', performSearch);
-    searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            performSearch();
-        }
-    });
-
-    // Real-time search as user types
-    searchInput.addEventListener('input', function() {
-        if (searchInput.value.trim() === '') {
-            showAllCards();
-        } else {
-            performSearch();
-        }
-    });
-}
-
-function performSearch() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    
-    if (searchTerm === '') {
-        showAllCards();
-        return;
-    }
-
-    let visibleCount = 0;
-    cards.forEach(card => {
-        const cardText = getCardText(card).toLowerCase();
-        if (cardText.includes(searchTerm)) {
-            card.style.display = 'block';
-            card.classList.add('fade-in');
-            visibleCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    showSearchResults(visibleCount, searchTerm);
-}
-
-function getCardText(card) {
-    const title = card.querySelector('h3')?.textContent || '';
-    const content = card.querySelector('.card-content')?.textContent || '';
-    const header = card.querySelector('.card-header')?.textContent || '';
-    return title + ' ' + content + ' ' + header;
-}
-
-function showSearchResults(count, searchTerm) {
-    // Remove existing result message if any
-    const existingResult = document.querySelector('.search-results');
-    if (existingResult) {
-        existingResult.remove();
-    }
-
-    if (count === 0) {
-        const noResults = document.createElement('div');
-        noResults.className = 'search-results';
-        noResults.innerHTML = `
-            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; margin: 2rem 0;">
-                <i class="fas fa-search" style="font-size: 3rem; color: #95a5a6; margin-bottom: 1rem;"></i>
-                <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">ไม่พบผลการค้นหา</h3>
-                <p style="color: #7f8c8d;">ไม่พบข้อมูลที่ตรงกับ "${searchTerm}"</p>
-                <button onclick="clearSearch()" class="btn btn-primary" style="margin-top: 1rem;">
-                    <i class="fas fa-times"></i> ล้างการค้นหา
-                </button>
-            </div>
-        `;
-        
-        const searchSection = document.querySelector('.search-section');
-        searchSection.parentNode.insertBefore(noResults, searchSection.nextSibling);
-    }
-}
-
-function clearSearch() {
-    searchInput.value = '';
-    showAllCards();
-    const existingResult = document.querySelector('.search-results');
-    if (existingResult) {
-        existingResult.remove();
-    }
-}
-
-function showAllCards() {
-    cards.forEach(card => {
-        card.style.display = 'block';
-        card.classList.remove('fade-in');
-    });
-    const existingResult = document.querySelector('.search-results');
-    if (existingResult) {
-        existingResult.remove();
-    }
-}
-
-// Filter functionality
-function initializeFilters() {
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterBtns.forEach(b => b.classList.remove('active'));
-            // Add active class to clicked button
-            this.classList.add('active');
-            
-            const filter = this.dataset.filter;
-            filterCards(filter);
-        });
-    });
-}
-
-function filterCards(category) {
-    let visibleCount = 0;
-    
-    cards.forEach(card => {
-        if (category === 'all') {
-            card.style.display = 'block';
-            visibleCount++;
-        } else {
-            const cardCategory = card.dataset.category;
-            if (cardCategory === category) {
-                card.style.display = 'block';
-                card.classList.add('fade-in');
-                visibleCount++;
-            } else {
-                card.style.display = 'none';
-            }
-        }
-    });
-
-    // Show filter results message if needed
-    showFilterResults(visibleCount, category);
-}
-
-function showFilterResults(count, category) {
-    // Remove existing result message if any
-    const existingResult = document.querySelector('.filter-results');
-    if (existingResult) {
-        existingResult.remove();
-    }
-
-    if (count === 0) {
-        const noResults = document.createElement('div');
-        noResults.className = 'filter-results';
-        noResults.innerHTML = `
-            <div style="text-align: center; padding: 2rem; background: white; border-radius: 15px; margin: 2rem 0;">
-                <i class="fas fa-filter" style="font-size: 3rem; color: #95a5a6; margin-bottom: 1rem;"></i>
-                <h3 style="color: #2c3e50; margin-bottom: 0.5rem;">ไม่พบข้อมูลในหมวดหมู่นี้</h3>
-                <p style="color: #7f8c8d;">ไม่พบข้อมูลในหมวดหมู่ "${getCategoryName(category)}"</p>
-            </div>
-        `;
-        
-        const firstSection = document.querySelector('.section');
-        firstSection.parentNode.insertBefore(noResults, firstSection.nextSibling);
-    }
-}
-
-function getCategoryName(category) {
-    const names = {
-        'monitoring': 'ติดตามสถานการณ์',
-        'help': 'ขอความช่วยเหลือ',
-        'shelter': 'ศูนย์พักพิง',
-        'donate': 'บริจาค'
-    };
-    return names[category] || category;
-}
-
-// Navigation functionality
-function initializeNavigation() {
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 100; // Account for sticky header
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Update active nav link
-                navLinks.forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            }
-        });
-    });
-}
-
-// Smooth scroll for anchor links
+// --- SMOOTH SCROLLING FOR NAVIGATION LINKS ---
 function initializeSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+            e.preventDefault(); 
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             }
         });
     });
 }
 
-// Animation on scroll
-function initializeAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+// --- MAP INITIALIZATION ---
+function initializeMap() {
+    // Check if map element exists
+    const mapElement = document.getElementById('map');
+    if (!mapElement) return;
+
+    const map = L.map('map').setView([7.1, 100.5], 9);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    const locations = {
+        shelter: [
+            { coords: [7.0089, 100.4971], title: "ศูนย์พักพิง ม.สงขลานครินทร์ (หาดใหญ่)" },
+            { coords: [7.1753, 100.6130], title: "ศูนย์พักพิง ม.ราชภัฏสงขลา" },
+            { coords: [7.0047, 100.4849], title: "ศูนย์พักพิง อาคารลานกีฬาภาษีเจริญ" },
+            { coords: [7.0193, 100.4756], title: "ศูนย์พักพิง โรงเรียนอนุบาลเทศบาลเมืองบ้านพรุ" },
+            { coords: [7.0041, 100.4956], title: "ศูนย์บริการประสานงานกลาง (รพ.สงขลานครินทร์)" },
+            { coords: [6.8779, 100.4308], title: "อบจ.สตูล บริการช่วยเหลือฉุกเฉิน" }
+        ],
+        donation: [
+            { coords: [7.0089, 100.4971], title: "จุดรับบริจาค ม.สงขลานครินทร์ (อาคารมรรคทิพย์)" },
+            { coords: [7.0089, 100.4971], title: "จุดรับบริจาค ม.สงขลานครินทร์ (ศูนย์กีฬา)" },
+            { coords: [7.0, 100.48], title: "จุดรับบริจาค เทศบาลเมืองบ้านพรุ" }
+        ]
     };
 
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-            }
-        });
-    }, observerOptions);
+    const layers = {
+        shelter: L.layerGroup().addTo(map),
+        donation: L.layerGroup().addTo(map)
+    };
 
-    // Observe all cards and sections
-    cards.forEach(card => observer.observe(card));
-    document.querySelectorAll('.section').forEach(section => observer.observe(section));
-}
+    const icons = {
+        shelter: L.icon({ 
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png', 
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png', 
+            iconSize: [25, 41], 
+            iconAnchor: [12, 41], 
+            popupAnchor: [1, -34], 
+            shadowSize: [41, 41] 
+        }),
+        donation: L.icon({ 
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png', 
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png', 
+            iconSize: [25, 41], 
+            iconAnchor: [12, 41], 
+            popupAnchor: [1, -34], 
+            shadowSize: [41, 41] 
+        })
+    };
 
-// Emergency features
-function initializeEmergencyFeatures() {
-    // Add click-to-call functionality for phone numbers
-    document.querySelectorAll('.phone-number').forEach(phoneElement => {
-        phoneElement.style.cursor = 'pointer';
-        phoneElement.addEventListener('click', function() {
-            const phoneNumber = this.textContent.replace(/[^0-9+]/g, '');
-            if (phoneNumber) {
-                window.location.href = `tel:${phoneNumber}`;
+    for (const type in locations) {
+        locations[type].forEach(loc => {
+            L.marker(loc.coords, { icon: icons[type] })
+                .bindPopup(`<b>${loc.title}</b>`)
+                .addTo(layers[type]);
+        });
+    }
+
+    // Map toggle buttons
+    document.querySelectorAll('.map-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const layer = btn.dataset.layer;
+            if (map.hasLayer(layers[layer])) {
+                map.removeLayer(layers[layer]);
+                btn.classList.remove('active');
+            } else {
+                map.addLayer(layers[layer]);
+                btn.classList.add('active');
             }
-        });
-        
-        // Add hover effect
-        phoneElement.addEventListener('mouseenter', function() {
-            this.style.textDecoration = 'underline';
-        });
-        
-        phoneElement.addEventListener('mouseleave', function() {
-            this.style.textDecoration = 'none';
         });
     });
+}
 
-    // Add click-to-call for phone numbers in contact info
-    document.querySelectorAll('.contact-info p').forEach(p => {
-        const phoneText = p.textContent;
-        const phoneMatch = phoneText.match(/(\d{2,3}-\d{3,4}-\d{3,4}|\d{10})/);
-        
-        if (phoneMatch && (phoneText.includes('โทร') || phoneText.includes('Tel'))) {
-            p.style.cursor = 'pointer';
-            p.addEventListener('click', function() {
-                const phoneNumber = phoneMatch[0].replace(/[^0-9+]/g, '');
-                if (phoneNumber) {
-                    window.location.href = `tel:${phoneNumber}`;
+// --- ACCORDION LOGIC ---
+function initializeAccordion() {
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const content = header.nextElementSibling;
+            content.classList.toggle('show');
+            const icon = header.querySelector('.fa-chevron-down, .fa-chevron-up');
+            if(icon) {
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+            }
+        });
+    });
+}
+
+// --- DONATION CARD DETAILS LOGIC ---
+function initializeDonationCards() {
+    const detailsButtons = document.querySelectorAll('.details-btn');
+    detailsButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            content.classList.toggle('show');
+            btn.textContent = content.classList.contains('show') ? 'ซ่อนรายละเอียด' : 'ดูรายละเอียด & บริจาค';
+        });
+    });
+}
+
+// --- FILTER LOGIC ---
+function initializeFilters() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const donationCards = document.querySelectorAll('.donation-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+
+            donationCards.forEach(card => {
+                if (filter === 'all' || card.dataset.category.includes(filter)) {
+                    card.style.display = 'block';
+                    card.classList.add('fade-in');
+                } else {
+                    card.style.display = 'none';
                 }
             });
-            
-            // Add hover effect
-            p.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = 'rgba(52, 152, 219, 0.1)';
-                this.style.borderRadius = '5px';
-                this.style.transition = 'background-color 0.3s ease';
-            });
-            
-            p.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = 'transparent';
-            });
-        }
+        });
+    });
+}
+
+// --- EMERGENCY FEATURES ---
+function initializeEmergencyFeatures() {
+    // Add click-to-call functionality for phone numbers
+    document.querySelectorAll('a[href^="tel:"]').forEach(phoneLink => {
+        phoneLink.addEventListener('click', function(e) {
+            // Let the default behavior handle the call
+            console.log('Calling:', this.getAttribute('href'));
+        });
     });
 
     // Add emergency alert functionality
@@ -319,7 +195,28 @@ function addEmergencyAlert() {
     }, 10000);
 }
 
-// Utility functions
+// --- ANIMATIONS ---
+function initializeAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, observerOptions);
+
+    // Observe all cards and sections
+    document.querySelectorAll('.card, .donation-card, .section').forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// --- UTILITY FUNCTIONS ---
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -332,51 +229,27 @@ function debounce(func, wait) {
     };
 }
 
-// Add keyboard shortcuts
+// --- KEYBOARD SHORTCUTS ---
 document.addEventListener('keydown', function(e) {
-    // Ctrl/Cmd + K for search focus
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-        e.preventDefault();
-        searchInput.focus();
-    }
-    
-    // Escape to clear search
+    // Escape to close emergency alert
     if (e.key === 'Escape') {
-        clearSearch();
-        searchInput.blur();
+        const emergencyAlert = document.querySelector('.emergency-alert');
+        if (emergencyAlert) {
+            emergencyAlert.style.display = 'none';
+        }
     }
     
-    // Number keys for quick filters
+    // Number keys for quick filters (1-5)
     if (e.key >= '1' && e.key <= '5' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+        const filterButtons = document.querySelectorAll('.filter-btn');
         const index = parseInt(e.key) - 1;
-        if (filterBtns[index]) {
-            filterBtns[index].click();
+        if (filterButtons[index]) {
+            filterButtons[index].click();
         }
     }
 });
 
-// Add print functionality
-function printPage() {
-    window.print();
-}
-
-// Add share functionality
-function sharePage() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'ศูนย์ช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025',
-            text: 'ข้อมูลช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ - แหล่งข้อมูล ศูนย์พักพิง บริจาค และติดต่อฉุกเฉิน',
-            url: window.location.href
-        }).catch(err => console.log('Error sharing:', err));
-    } else {
-        // Fallback - copy to clipboard
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            alert('คัดลอกลิงก์แล้ว!');
-        });
-    }
-}
-
-// Add back to top button
+// --- ADD BACK TO TOP BUTTON ---
 function addBackToTopButton() {
     const backToTopBtn = document.createElement('button');
     backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
@@ -388,7 +261,7 @@ function addBackToTopButton() {
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background: #3498db;
+        background: var(--info-color);
         color: white;
         border: none;
         cursor: pointer;
@@ -409,12 +282,12 @@ function addBackToTopButton() {
     });
     
     backToTopBtn.addEventListener('mouseenter', () => {
-        backToTopBtn.style.background = '#2980b9';
+        backToTopBtn.style.background = '#0dcaf0';
         backToTopBtn.style.transform = 'scale(1.1)';
     });
     
     backToTopBtn.addEventListener('mouseleave', () => {
-        backToTopBtn.style.background = '#3498db';
+        backToTopBtn.style.background = 'var(--info-color)';
         backToTopBtn.style.transform = 'scale(1)';
     });
     
@@ -433,86 +306,23 @@ function addBackToTopButton() {
 // Initialize back to top button
 addBackToTopButton();
 
-// Add loading state for external links
-document.querySelectorAll('a[target="_blank"]').forEach(link => {
-    link.addEventListener('click', function() {
-        // Add loading indicator
-        const originalContent = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> กำลังโหลด...';
-        this.style.pointerEvents = 'none';
-        
-        // Restore after a short delay
-        setTimeout(() => {
-            this.innerHTML = originalContent;
-            this.style.pointerEvents = 'auto';
-        }, 2000);
-    });
-});
-
-// Mobile menu functionality
-const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-const navMenu = document.getElementById('navMenu');
-const navOverlay = document.getElementById('navOverlay');
-
-if (mobileMenuBtn && navMenu && navOverlay) {
-    mobileMenuBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        navOverlay.classList.toggle('active');
-        mobileMenuBtn.classList.toggle('active');
-        
-        // Change icon
-        const icon = mobileMenuBtn.querySelector('i');
-        if (navMenu.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    navOverlay.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        navOverlay.classList.remove('active');
-        mobileMenuBtn.classList.remove('active');
-        
-        // Reset icon
-        const icon = mobileMenuBtn.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-    });
-
-    // Close menu when clicking on nav links
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            navOverlay.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            
-            // Reset icon
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+// --- SHARE FUNCTIONALITY ---
+function sharePage() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'ศูนย์ช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025',
+            text: 'ข้อมูลช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ - แหล่งข้อมูล ศูนย์พักพิง บริจาค และติดต่อฉุกเฉิน',
+            url: window.location.href
+        }).catch(err => console.log('Error sharing:', err));
+    } else {
+        // Fallback - copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            alert('คัดลอกลิงก์แล้ว!');
         });
-    });
-
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            navOverlay.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            
-            // Reset icon
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+    }
 }
 
-// Console welcome message
-console.log('%cศูนย์ช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025', 'color: #3498db; font-size: 20px; font-weight: bold;');
-console.log('%cสร้างขึ้นเพื่อการช่วยเหลือมนุษย์ 🙏', 'color: #27ae60; font-size: 14px;');
-console.log('%cหากพบข้อผิดพลาดหรือต้องการแจ้งเพิ่มเติม กรุณาติดต่อ', 'color: #e74c3c; font-size: 12px;');
+// --- CONSOLE WELCOME MESSAGE ---
+console.log('%cศูนย์ช่วยเหลือผู้ประสบภัยน้ำท่วมภาคใต้ 2025', 'color: #0dcaf0; font-size: 20px; font-weight: bold;');
+console.log('%cสร้างขึ้นเพื่อการช่วยเหลือมนุษย์ 🙏', 'color: #198754; font-size: 14px;');
+console.log('%cหากพบข้อผิดพลาดหรือต้องการแจ้งเพิ่มเติม กรุณาติดต่อ', 'color: #dc3545; font-size: 12px;');
